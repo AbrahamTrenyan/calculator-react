@@ -29,7 +29,7 @@ function App() {
   const [operation, setOperation] = useState([]);
   const [result, setResult] = useState([0]);
   const handleClick = (btnValue) => {
-    if (result.length < 10) {
+    if (result.length < 9) {
       let newOperation = [...operation, btnValue];
       if (
         typeof btnValue === 'number' ||
