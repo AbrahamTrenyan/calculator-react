@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import './App.css';
-import Container from './Components/Container/Container';
-import Screen from './Components/Screen/Screen';
-import Keyboard from './Components/Keyboard/Keyboard';
-import Button from './Components/Button/Button';
+import Container from './components/Container/Container';
+import Screen from './components/Screen/Screen';
+import Keyboard from './components/Keyboard/Keyboard';
+import Button from './components/Button/Button';
 function App() {
   const [buttons] = useState([
     'C',
@@ -29,19 +29,22 @@ function App() {
   const [operation, setOperation] = useState([]);
   const [result, setResult] = useState([0]);
   const handleClick = (btnValue) => {
-    let newOperation = [...operation, btnValue];
-    if (
-      typeof btnValue === 'number' ||
-      (typeof btnValue !== 'number' && /^\d+$/.test(operation[operation.length - 1]))
-    ) {
-      //Only sets sign key, if we have a number before it.
-      setOperation([...newOperation]);
-      setResult([...newOperation]);
-    }
-    if (btnValue === '%') {
-      handlePercent(newOperation);
-    }
-  };
+    while (operation.length <= 11) {
+      let newOperation = [...operation, btnValue];
+      if (
+        typeof btnValue === 'number' ||
+        (typeof btnValue !== 'number' && /^\d+$/.test(operation[operation.length - 1]))
+      ) {
+        //Only sets sign key, if we have a number before it.
+        setOperation([...newOperation]);
+        setResult([...newOperation]);
+      }
+      if (btnValue === '%') {
+        handlePercent(newOperation);
+      }
+    };
+  }
+
   const resetCalc = () => {
     setOperation([]);
     setResult([0]);
